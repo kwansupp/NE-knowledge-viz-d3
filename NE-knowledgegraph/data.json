@@ -1,0 +1,22 @@
+{
+  "name": "Innovation",
+  "children": [
+    {
+      "name": "Design Thinking",
+      "children": [
+        {
+          "name": "Process",
+          "children": []
+        },
+        {
+          "name": "Intent",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Culture",
+      "children": []
+    }
+  ]
+}

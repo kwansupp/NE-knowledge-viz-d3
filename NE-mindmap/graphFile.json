@@ -1,0 +1,14 @@
+{
+  "nodes":[
+		{"name":"Business Dev","level":1,"parent":null},
+		{"name":"Innovation","level":1,"parent":null},
+		{"name":"Change Management","level":1,"parent":null},
+		{"name":"Leadership","level":1,"parent":null},
+		{"name":"Technology","level":1,"parent":null},
+		{"name":"Communication","level":1,"parent":null},
+		{"name":"Scaling Up","level":2,"parent":0}
+	],
+	"links":[
+		{"source":0,"target":6,"weight":1}
+	]
+}

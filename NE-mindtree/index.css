@@ -5,11 +5,14 @@
 
 .node text {
 	stroke:#333;
-	cursor:pointer;
 }
 
 .node circle{
 	stroke: steelblue;
 	stroke-width:3px;
 	fill:#fff;
+}
+
+.node {
+	cursor:pointer;
 }

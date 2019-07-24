@@ -1,0 +1,35 @@
+{
+  "nodes": [
+    {"id": "Knowledge"},
+    {"id": "Innovation"},
+    {"id": "Scaling Up"},
+    {"id": "Computer Vision"},
+    {"id": "Skills"},
+    {"id": "Enterprising"},
+    {"id": "Leading"},
+    {"id": "Creating"},
+    {"id": "Communicating"},
+    {"id": "Learning"},
+    {"id": "Attitudes"},
+    {"id": "Boundless"},
+    {"id": "Curious"},
+    {"id": "Disciplined"},
+    {"id": "Eager"},
+    {"id": "Social"}
+  ],
+  "links": [
+    {"source": "Knowledge", "target": "Innovation"},
+    {"source": "Knowledge", "target": "Scaling Up"},
+    {"source": "Knowledge", "target": "Computer Vision"},
+    {"source": "Skills", "target": "Enterprising"},
+    {"source": "Skills", "target": "Leading"},
+    {"source": "Skills", "target": "Creating"},
+    {"source": "Skills", "target": "Communicating"},
+    {"source": "Skills", "target": "Learning"},
+    {"source": "Attitudes", "target": "Boundless"},
+    {"source": "Attitudes", "target": "Curious"},
+    {"source": "Attitudes", "target": "Disciplined"},
+    {"source": "Attitudes", "target": "Eager"},
+    {"source": "Attitudes", "target": "Social"}
+  ]
+}

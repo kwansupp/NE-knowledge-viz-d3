@@ -28,6 +28,7 @@ function showData(data) {
 
     
     function createElements(data) {
+        console.log("create elements")
 
         let body = d3.select(".canvas")
 
@@ -43,7 +44,21 @@ function showData(data) {
             .attr("class", "nodes")
             .selectAll("circle")
             .data(data.nodes)
-            .enter()
+            .enter().append("g")
+            .on("mouseover", mouseover)
+            .on("mouseout", mouseout)
+            .on("click", nodeToggle);
+
+        nodes.append("text")
+            .attr("text-anchor", "middle")
+            .attr("dy", "-0.8em")
+            .attr("class", "label")
+            .attr("fill", "gray")
+            .attr("font-size", 14)
+            .text(function(d) { return d.id });
+
+        nodes.append("title")
+            .text(function(d) { return d.id });
 
         nodes.append("circle")
             .attr("class", "node")
@@ -52,24 +67,23 @@ function showData(data) {
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
-                .on("end", dragended))
-            .on("click", function() {
-                nodeToggle();
-            });;
+                .on("end", dragended));
+            // .on("click", function(d) {
+            //     nodeToggle(d);
+            // });
 
-        nodes.append("text")
-            .attr("class", "label")
-            .attr("fill", "gray")
-            .attr("z-index", -1)
-            .text(function(d) { return d.id});
+        
 
     }
 
     function updateElements() {
         d3.select(".nodes")
-            .selectAll("circle")
-            .attr("cx", d => d.x)
-            .attr("cy", d => d.y)
+            .selectAll("g")
+            // .attr("cx", d => d.x)
+            // .attr("cy", d => d.y)
+            .attr("transform", function(d) {
+              return "translate(" + d.x + "," + d.y + ")";
+            })
         
         d3.select(".links")
             .selectAll("line")
@@ -78,9 +92,9 @@ function showData(data) {
             .attr("x2", d => d.target.x)
             .attr("y2", d => d.target.y)
 
-        d3.selectAll(".label")
-            .attr("x", d => d.x + 10)
-            .attr("y", d => d.y + 5)
+        // d3.selectAll(".label")
+        //     .attr("x", d => d.x + 10)
+        //     .attr("y", d => d.y + 5)
     }
 
 
@@ -105,11 +119,51 @@ function showData(data) {
         // simulation.force("center", d3.forceCenter());
     }
 
-    function nodeToggle() {
-        // d3.mouse(this).style("fill", "blue")
-    }
-
 
 }
 
+function nodeToggle(d) {
+    if (d3.select(this).select("circle").attr("class") === "expand") {
+        // revert to node
+        d3.select(this).select("circle")
+            .attr("class", "node")
 
+    } else {
+        // add expand class
+        d3.select(this).select("circle")
+            .attr("class", "expand")
+            // .transition()
+            // .duration(1000)
+            // .attr("fill", "gray")
+            // .attr("r", 20);
+    }
+    
+}
+
+function mouseover() {
+    d3.select(this).select("circle").transition()
+      .duration(250)
+      .attr('r', 7);
+      // .attr("fill", "#DA4567");
+    d3.select(this).select("text").transition()
+      .duration(250)
+      .attr('font-size', 20);
+  }
+
+  function mouseout() {
+    // console.log(d3.select(this).select("circle").attr("class"));
+    if (d3.select(this).select("circle").attr("class") === "expand") {
+        d3.select(this).select("circle")
+            .attr("r", 5)
+            .attr("fill", "steelblue");
+    } else {
+        d3.select(this).select("circle").transition()
+            .duration(250)
+            .attr('r', 5)
+            .attr("fill", "black");
+        d3.select(this).select("text").transition()
+            .duration(250)
+            .attr('font-size', 14);
+    }
+    
+  }
